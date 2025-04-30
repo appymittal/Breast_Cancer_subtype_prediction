@@ -43,6 +43,7 @@
 
 # Specific other files you want to track
 !README.md
+!VAE-CNN.png
 
 
 
