@@ -80,8 +80,8 @@ class SingleOmicsClassifier(nn.Module):
         self.norm_rna = nn.LayerNorm(latent_dim)
 
         # Fusion + normalization before classification
-        self.fusion = MultimodalFusion(latent_dim)
-        self.norm_fused = nn.LayerNorm(latent_dim)
+        # self.fusion = MultimodalFusion(latent_dim)
+        # self.norm_fused = nn.LayerNorm(latent_dim)
 
         # Classifier head
         self.classifier = nn.Sequential(
@@ -101,12 +101,12 @@ class SingleOmicsClassifier(nn.Module):
 
         # Fuse and normalize
 
-        fused = self.fusion([z_rna])
-        # print(f"Fusion module attn_weights: {self.fusion.attn_weights.shape}")
-        fused = self.norm_fused(fused)
+        # fused = self.fusion([z_rna])
+        # # print(f"Fusion module attn_weights: {self.fusion.attn_weights.shape}")
+        # fused = self.norm_fused(fused)
 
         # Classify
-        logits = self.classifier(fused)
+        logits = self.classifier(z_rna)
 
         return {
             'logits': logits,
